@@ -1,0 +1,20 @@
+{
+  "name": "web-access",
+  "version": "2.3.0",
+  "description": "安全网页访问服务",
+  "main": "server.js",
+  "author": "网络守护者",
+  "repository": "https://github.com/NetworkGuardian/web-access",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.14.2",
+    "axios": "^1.6.2"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
