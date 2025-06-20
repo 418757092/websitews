@@ -1,11 +1,19 @@
-环境变量	说明
-SECRET_KEY	用于VLESS协议握手的唯一标识符。如果未设置，默认为 '5efabea4-f6d4-91fd-b8f0-17e004c89c60'。
-MONITOR_HOST	哪吒探针服务器的地址。对于哪吒v1，形式为 nz.abc.com:8008；对于哪吒v0，形式为 nz.abc.com。如果未设置，默认为空字符串。
-MONITOR_PORT	哪吒探针服务器的端口。哪吒v1没有此变量。对于哪吒v0，当端口为 443, 8443, 2096, 2087, 2083, 2053 其中之一时会开启TLS。如果未设置，默认为空字符串。
-MONITOR_AUTH	哪吒探针的认证密钥。对于哪吒v1，这是 NZ_CLIENT_SECRET；对于哪吒v0，这是agent端口。如果未设置，默认为空字符串。
-PRIMARY_DOMAIN	用于VLESS配置的域名，建议填写已反向代理的域名。如果未设置，默认为 'example.com'。
-AUTO_PING	是否开启自动访问保活功能。false 为关闭，true 为开启。开启时，PRIMARY_DOMAIN 变量必须设置。如果未设置，默认为 false。
-RELAY_PATH	节点路径，默认获取 SECRET_KEY 的前8位。如果未设置，默认为 SECRET_KEY 的前8位。
-CONFIG_PATH	获取节点的订阅路径。如果未设置，默认为 'sub123'。
-NODE_LABEL	节点显示名称。如果未设置，默认为 '安全接入点'。
-SERVICE_PORT	HTTP和WebSocket服务监听的端口。如果未设置，默认为 3000。
+# 安全网页访问服务
+
+这是一个提供安全网页访问功能的服务，并集成了系统监控。
+
+## 环境变量设置
+
+PaaS 平台设置的环境变量
+
+| 变量名 | 是否必须 | 默认值 | 备注 |
+| --- | --- | --- | --- |
+| `SECRET_KEY` | 否 | `de04add9-5c68-6bab-950c-08cd5320df33` | VLESS协议的唯一标识符。如果开启了哪吒v1，建议修改此值。 |
+| `SERVICE_PORT` | 否 | `3000` | HTTP和WebSocket服务的监听端口。 |
+| `MONITOR_HOST` | 否 | | 哪吒监控服务器的地址。哪吒v1填写形式：`nz.abc.com:8008`；哪吒v0填写形式：`nz.abc.com`。 |
+| `MONITOR_PORT` | 否 | | 哪吒监控服务器的端口。哪吒v1没有此变量。v0的Agent端口为 `{443, 8443, 2096, 2087, 2083, 2053}` 其中之一时，将开启TLS。 |
+| `MONITOR_AUTH` | 否 | | 哪吒监控的认证密钥。哪吒v1对应 `NZ_CLIENT_SECRET`；哪吒v0对应Agent端口。 |
+| `NODE_LABEL` | 否 | `安全接入点` | 节点在监控面板上显示的名称前缀，例如：`Glitch`。 |
+| `PRIMARY_DOMAIN` | 是 | | 项目分配的域名或已反向代理的域名，不包括 `https://` 前缀。 |
+| `CONFIG_PATH` | 否 | `sub123` | 获取节点配置的订阅路径。 |
+| `AUTO_PING` | 否 | `false` | 是否开启自动访问保活功能。`false` 为关闭，`true` 为开启。开启时，必须同时填写 `PRIMARY_DOMAIN` 变量。 |
