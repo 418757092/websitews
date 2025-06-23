@@ -9,7 +9,7 @@ COPY package.json ./
 
 # 4. 安装必要的系统依赖和 Node.js 包
 #    关键：添加了 openssl 包
-RUN apk add --no-cache curl gawk coreutils openssl && \
+RUN apk add --no-cache curl bash gawk coreutils openssl && \
     npm install
 
 # 5. 拷贝所有剩余的项目文件到工作目录
